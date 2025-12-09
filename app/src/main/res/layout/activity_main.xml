@@ -50,12 +50,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.287" />
 
-    <!-- ==================== Updated Button Section ==================== -->
-
-    <!-- ================================================================ -->
-
-    <!-- Row 1: Loan Amount -->
-
     <EditText
         android:id="@+id/editTextInterestRate"
         android:layout_width="wrap_content"
@@ -70,7 +64,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.376" />
 
-    <!-- Row 2: Total Interest -->
     <Button
         android:id="@+id/buttonCalculate"
         android:layout_width="182dp"

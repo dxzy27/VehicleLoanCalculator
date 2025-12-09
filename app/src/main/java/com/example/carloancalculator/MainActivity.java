@@ -14,16 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Declare variables for the UI elements
     private EditText editTextVehiclePrice;
     private EditText editTextDownPayment;
     private EditText editTextLoanPeriod;
     private EditText editTextInterestRate;
     private Button buttonCalculate;
     private Button buttonReset;
-
-    // Result TextViews
     private TextView textViewLoanAmountResult;
     private TextView textViewTotalInterestResult;
     private TextView textViewTotalPaymentResult;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // This method contains the logic for resetting all fields
+    // For resetting all fields
     private void resetFields() {
         // Clear all EditText input fields
         editTextVehiclePrice.setText("");
@@ -78,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         textViewTotalInterestResult.setText("");
         textViewTotalPaymentResult.setText("");
         textViewMonthlyPaymentResult.setText("");
+        Toast.makeText(this, "Reset Successfully", Toast.LENGTH_SHORT).show();
     }
 
     private void calculateLoan() {
@@ -97,7 +94,18 @@ public class MainActivity extends AppCompatActivity {
             double downPayment = Double.parseDouble(downPaymentStr);
             int loanPeriodInYears = Integer.parseInt(loanPeriodStr);
             double interestRate = Double.parseDouble(interestRateStr);
-
+            if (vehiclePrice < downPayment) {
+                Toast.makeText(this, "Down payment cannot exceed vehicle price", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (loanPeriodInYears > 30) {
+                Toast.makeText(this, "Loan period cannot be more than 30 years", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (interestRate > 100) {
+                Toast.makeText(this, "Interest rate cannot exceed 100%", Toast.LENGTH_SHORT).show();
+                return;
+            }
             double loanAmount = vehiclePrice - downPayment;
             double totalInterest = loanAmount * (interestRate / 100) * loanPeriodInYears;
             double totalPayment = loanAmount + totalInterest;
@@ -109,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             textViewMonthlyPaymentResult.setText(String.format("RM %.2f", monthlyPayment));
 
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Please enter valid numbers", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter valid inputs", Toast.LENGTH_SHORT).show();
         }
     }
 

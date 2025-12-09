@@ -13,7 +13,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="12dp"
         android:autoLink="web"
-        android:text="https://github.com/dxzy27/Vehicle-Loan-Calculator.git"
+        android:text="https://github.com/dxzy27/VehicleLoanCalculator.git"
         android:textColor="#040404"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
